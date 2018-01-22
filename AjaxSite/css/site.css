@@ -1,0 +1,34 @@
+﻿
+.simpleTable{
+    border:1px solid blue;
+    width:50%;
+    border-collapse:collapse;
+    
+}
+.simpleTable th,.simpleTable td{
+    border:1px solid #b21818;
+    padding:5px;
+}
+
+.simpleTable>tbody>tr:nth-child(odd){
+    background-color:yellow;
+}
+.simpleTable > tbody > tr:nth-child(even) {
+        background-color: green;
+}
+.container{
+    width:300px;
+    margin:0 auto;
+}
+.simpleForm{
+    margin:auto;
+}
+.simpleForm>div{
+margin-bottom:4px;
+}
+.simpleForm>div>label{
+    width:100px;
+    display:inline-block;
+    background-color:yellow;
+
+}
