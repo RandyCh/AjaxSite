@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="simpleForm" action="add.ashx" method="post" enctype="application/x-www-form-urlencoded">
+        <form class="simpleForm" action="Create.aspx" method="post" enctype="application/x-www-form-urlencoded">
             <!--post 大量資料輸入-->
             <!--預設是get-->
             <!--enctype="multipart/form-data" 做檔案上傳-->
@@ -15,11 +15,11 @@
             <!--一定要給name欄位-->
             <label>姓名<input type="text" name="username" value="guest" /></label>
             <div>
-                <label for="username2">姓名</label><input type="text" id="username2" value="guest" placeholder="請輸入姓名" />
+                <label for="username2">姓名</label><input name="username" type="text" id="username2" value="guest" placeholder="請輸入姓名" />
                 <!--<label整個包也是會進到textbox 或是   for屬性和id相同時-->
             </div>
             <div>
-                <label for="password">密碼</label><input type="password" id="password" placeholder="請輸入密碼" />
+                <label for="password">密碼</label><input type="password" id="password" placeholder="請輸入密碼" name="password"/>
             </div>
             <div>
                 <label for="email">email</label><input type="email" id="email" name="email" placeholder="請輸入電子郵件" />
