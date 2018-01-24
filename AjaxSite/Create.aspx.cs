@@ -14,9 +14,9 @@ public partial class Create : System.Web.UI.Page
 
         //使用者透過http get傳過來的資料
         //在server端 Request.QueryString["參數名稱"]
-        string strName = Request.QueryString["username"];
-        string strPassword = Request.QueryString["password"];
-        string strEmail = Request.QueryString["email"];
-
+        string strName = Request.Form["username"];
+        string strPassword = Request.Form["password"];
+        string strEmail = Request.Form["email"];
+        Literal1.Text = string.Format("{0}您好 ,你的電子郵件是{1}", strName, strEmail);
     }
 }
