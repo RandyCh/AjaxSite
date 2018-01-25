@@ -11,26 +11,7 @@
     <link href="css/jumbotron.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                    <th>MemberID</th>
-                    <th>UserName</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                 </tbody>
-            </table>
-            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-        </div>
-        
-    </form>
-     
+   
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">MSIT117 Site</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +39,7 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -69,9 +50,28 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <h1 class="display-3">Ajax 課程</h1>
-                <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+                <h1 class="display-3">Ajax 課程 資料讀取</h1>
+                 <form id="form1" runat="server">
+        <div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                    <th>MemberID</th>
+                    <th>UserName</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>編輯</th>
+                    </tr>
+                </thead>
+                <tbody>  
+                    <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                 </tbody>
+            </table>
+          
+        </div>
+        
+    </form>
+     
             </div>
         </div>
 
@@ -95,7 +95,7 @@
                 </div>
             </div>
 
-            <hr>
+            <hr/>
 
         </div> <!-- /container -->
 
