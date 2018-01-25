@@ -10,7 +10,7 @@ public partial class Edit : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string id = "1";
+        string id = "0";
         if (Request.QueryString["id"] != null)
         {
             id = Request.QueryString["id"];
@@ -35,7 +35,7 @@ public partial class Edit : System.Web.UI.Page
                 {
                     //    //dr["Name"]
                     //    //顯示資料
-                    strData += string.Format("<div class='form-group'><div class='form-group'><label for='username'>姓名</label><input type='text' name='UserNmae' class='form-control col-8-xs' id='username' value='{0}'></div>", dr["Name"]);
+                    strData += string.Format("<div class='form-group'><div class='form-group'><label for='username'>姓名</label><input type='text' name='name' class='form-control col-8-xs' id='username' value='{0}'><input type='hidden' name='id' value='{1}'></div>", dr["Name"],dr["id"]);
                     strData += string.Format("<div class='form-group'><div class='form-group'><label for='email' class='col-2-sm'>Email</label><input type='text' name='email' class='form-control col-8-xs' id='email' value='{0}'></div></div>", dr["Email"]);
                 }
                 Literal1.Text = strData;

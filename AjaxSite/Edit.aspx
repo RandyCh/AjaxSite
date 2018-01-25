@@ -13,14 +13,19 @@
    
         <div class="jumbotron">
             <div class="container"> 
-                <form id="form1" runat="server">
-        <div>
-            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-        </div>  
-                     <button type="submit" class="btn btn-primary">修改</button>
+                <form id="form1" runat="server" class="form-horizontal" action="Update.aspx" method="post">
+                    <div>
+                        <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+
+                    </div>  
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-saved"></span>修改</button>
                 </form>
                 </div>
             </div>
+
+     <footer class="container">
+        <p>&copy; Company 2017-2018</p>
+    </footer>
 
   
     
