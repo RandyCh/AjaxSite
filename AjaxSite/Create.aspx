@@ -49,7 +49,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1 class="display-3">Ajax 課程</h1>
-                <form  id="form1" runat="server" method="post">
+                <form  id="form1" runat="server" method="get">
                     <div class="form-group">
                         <label for="username2">姓名</label>
                         <input name="username" type="text" class="form-control" id="username2" value="guest" placeholder="請輸入姓名" />
@@ -64,23 +64,21 @@
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <button type="submit" class="btn btn-primary" name="btnCreat">新增</button>
+                    <div>
+                        <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                    </div>
                 </form>
-
-
             </div>
         </div>
-           
     </main>
-
+        
     <footer class="container">
         <p>&copy; Company 2017-2018</p>
     </footer>
 
     
-        <div>
-            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-        </div>
-    </form>
+
+ 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>

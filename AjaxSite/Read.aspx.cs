@@ -24,11 +24,8 @@ public partial class Read : System.Web.UI.Page
                 //產生dataReader物件
                 //開啟連線
                 conn.Open();
-                
-
                 SqlDataReader dr = cmd.ExecuteReader();
                 //ado.net
-           
                 ////步驟四透過DateReader讀取資料
                 while (dr.Read())//當有資料dr.read=true
                 {
@@ -41,12 +38,12 @@ public partial class Read : System.Web.UI.Page
                     strData += string.Format("<td><a href='delete.aspx?id={0}' class='btn btn-danger'>刪除</a><a href='edit.aspx?id={0}' class='btn btn-primary'>編輯</a></td></tr>", dr["Id"]);
                 }
 
-                strData += ("  Connection State = " + conn.State);
+                //strData += ("  Connection State = " + conn.State);
                 conn.Close();
-                strData +=("  Connection State = " + conn.State);
+                //strData +=("  Connection State = " + conn.State);
             }
-             strData += ("  Connection State = " + conn.State);
-             Literal1.Text = strData;
+             //strData += ("  Connection State = " + conn.State);
+             //Literal1.Text = strData;
 
         }
 

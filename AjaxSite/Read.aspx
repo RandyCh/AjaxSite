@@ -51,8 +51,8 @@
         <div class="jumbotron">
             <div class="container">
                 <h1 class="display-3">Ajax 課程 資料讀取</h1>
-                 <form id="form1" runat="server">
-        <div>
+               
+        <form id="form1" runat="server">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -67,13 +67,11 @@
                     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                  </tbody>
             </table>
-          
-        </div>
         
     </form>
-     
+     </div>
             </div>
-        </div>
+      
 
         <div class="container">
             <!-- Example row of columns -->
