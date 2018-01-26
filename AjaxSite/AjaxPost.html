@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #img1{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <h2>非同步</h2>
+    <input type="text" /> <br />
+    <input type="text" /> <br />
+    <input type="text" /> <br />
+    <input type="text" /> <br />
+    <input type="text" /> <br />
+    <img id="img1" src="images/ajax-loader.gif" /><input type="button" value="load" id="buttonLoad"/>
+    <div id="div1"></div>
+    <script>
+        var btn = document.getElementById("buttonLoad");
+        var myImg = document.getElementById("img1");
+        btn.addEventListener("click", load);
+        var xhr = null;
+        function load() {
+
+            //alert("load");
+            //step 1建立ajax物件
+            xhr = new XMLHttpRequest();
+            //readystatechange事件
+            xhr.addEventListener("readystatechange", callback);
+            //步驟二對server端發出要求
+            //把get改成post
+            xhr.open("post", "param.ashx", true);
+            //設定header
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //傳遞的資料要放到send方法()傳送
+            xhr.send("userName=Tom&age=30");
+
+            //}
+        }
+        function callback() {
+            console.log("readyState:" + xhr.readyState);
+
+            if (xhr.readyState == 1) {
+                myImg.style.display = "inline";//顯示loading圖片https://ajaxload.info/
+                btn.setAttribute("disabled", "disabled");
+                btn.value="loading..";
+
+            }
+            else if (xhr.readyState == 4)
+            {
+                document.getElementById("img1").style.display = "none";//隱藏loading圖片
+                btn.removeAttribute("disabled");
+                btn.value="load";
+                if (xhr.status == 200)//才不會把錯誤程式碼都顯示出來
+                {
+                    //步驟三 接收server端回應結果
+                    var data = xhr.responseText; //responseText不是一個function 不需要小括號
+                    //步驟四 顯示資料
+                   
+                    var myDiv = document.querySelector("#div1");//queryselect要用"#"
+                    myDiv.innerHTML = "<h1>" + data + "</h1>";//只接收資料 畫面在Ckuent端做
+
+                }
+                else {
+                    alert(xhr.status + ":" + xhr.statusText);
+                }
+            }
+            
+        }
+    </script>
+
+</body>
+</html>
