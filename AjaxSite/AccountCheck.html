@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">MSIT117 Site</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Ajax 課程</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+
+            <form action="Create.aspx" method="post" enctype="application/x-www-form-urlencoded">
+
+                <div class="form-group">
+                    <label for="username">姓名</label><input name="username" type="text" class="form-control" id="username" value="guest" placeholder="請輸入姓名" />
+                    <!--<label整個包也是會進到textbox 或是   for屬性和id相同時-->
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">密碼</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">email</label>
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="請輸入email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <button type="submit" class="btn btn-primary">新增</button>
+            </form>
+            <p>
+                Asterisk icon on a button:
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-asterisk"></span> Asterisk
+                </button>
+            </p>
+
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="Scripts/myXMLHttp.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+
+        document.querySelector("#username").addEventListener("blur", check);
+
+        function check() {
+            var name = this.value;
+            var xhr = initXMLHttpRequest();//new XMLHttpRequest();
+            if (xhr != null) {
+                xhr.addEventListener("readystatechange", function (){
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            var data = xhr.responseText;
+                            var spn = document.querySelector("#div>input")
+                            spn.classList.remove("glyphicon-question-sign")
+                            if (data == "0") {
+                                spn.classList.add("glyphicon-ok");
+                            } else {
+                                spn.classList.add("glyphicon-remove");
+                            }
+                        }
+                        else {
+                            alert(xhr.status + ":" + xhr.statusText);
+                        }
+                    }
+                })
+                xhr.open("get", "AccountCheck.ashx?name=" + name);
+                xhr.send();
+            }
+            else {
+                alert("您的瀏覽器不支援ajax功能")
+            }
+            
+
+        }
+
+
+
+        var btn = document.getElementById("buttonLoad");
+        var myImg = document.getElementById("img1");
+
+        btn.addEventListener("click", load);
+        var xhr = null;
+        function load() {
+            //iniXMLHttpRequest是一個自訂的function
+            //定義在scripts/myXMLHttp.js中
+            //主要是為了讓IE7以下的瀏覽器也可以產生Ajax engine物件
+            //如果不考慮IE7以下的瀏覽器,要產生Ajax engine物件 請直接使用XMLHttpRequest()物件
+            xhr = new XMLHttpRequest();
+            if (xhr != null) {
+                //開始執行Ajax程式
+                //readystatechange事件
+                xhr.addEventListener("readystatechange", callback);
+                //步驟二對server端發出要求
+                //把get改成post
+                xhr.open("post", "param.ashx", true);
+                //設定header
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                //傳遞的資料要放到send方法()傳送
+                xhr.send("userName=Tom&age=30");
+                //}
+            } else {
+                myDiv.innerHTML = "您的瀏覽器不支援ajax的功能";
+            }
+
+
+        }
+        function callback() {
+            console.log("readyState:" + xhr.readyState);
+
+            if (xhr.readyState == 1) {
+                myImg.style.display = "inline";//顯示loading圖片https://ajaxload.info/
+                btn.setAttribute("disabled", "disabled");
+                btn.value = "loading..";
+
+            }
+            else if (xhr.readyState == 4) {
+                document.getElementById("img1").style.display = "none";//隱藏loading圖片
+                btn.removeAttribute("disabled");
+                btn.value = "load";
+                if (xhr.status == 200)//才不會把錯誤程式碼都顯示出來
+                {
+                    //步驟三 接收server端回應結果
+                    var data = xhr.responseText; //responseText不是一個function 不需要小括號
+                    //步驟四 顯示資料
+
+                    var myDiv = document.querySelector("#div1");//queryselect要用"#"
+                    myDiv.innerHTML = "<h1>" + data + "</h1>";//只接收資料 畫面在Ckuent端做
+
+                }
+                else {
+                    alert(xhr.status + ":" + xhr.statusText);
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
