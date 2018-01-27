@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--well formed規則-->
-<employees><!--1.只能有一個根元素--><!--可延伸的標記語言-->
-   <employee>
-     <id/><!--空的標籤必須要有/符號-->
-  <name>Jack</name>
+<employees><!--1.只能有一個根元素--><!--可延伸的標記語言--><!--要滿足巢狀排列-->
+   <employee id="ab"><!--屬性必須要被引號包起來-->
+     <id/>
+     <id/><!--元素名稱可以重複 有兩個id 但屬性名稱不能重複--> 
+     <!--空的標籤必須要有/符號--><!--英文大小寫是有差異的 ID id-->
+  <name>Jack &amp; Mary </name><!--特殊符號的使用-->
 </employee>
 <employee>
-  <name>Mary</name>
+  <name>Mary &lt; Jack</name>
 </employee>
-
 </employees>
  
