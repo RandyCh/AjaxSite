@@ -1,1 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<employees><!--只能有一個根元素-->
+   <employee>
+  <name>Jack</name>
+</employee>
+<employee>
+  <name>Mary</name>
+</employee>
+</employees>
+ 
