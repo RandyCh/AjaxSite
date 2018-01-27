@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<employees><!--只能有一個根元素-->
+<!--well formed規則-->
+<employees><!--1.只能有一個根元素--><!--可延伸的標記語言-->
    <employee>
+     <id/><!--空的標籤必須要有/符號-->
   <name>Jack</name>
 </employee>
 <employee>
   <name>Mary</name>
 </employee>
+
 </employees>
  
