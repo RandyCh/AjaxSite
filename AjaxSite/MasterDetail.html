@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">MSIT117 Site</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4>Ajax XML</h4>
+            </div>
+            <div class="panel-body">
+               <select id="select1">
+                   <option value="0">請選擇</option>
+               </select>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+    </div>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        if (xhr != null) {
+            xhr.addEventListener("readystatechange", function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var doc = xhr.responseXML; //doc=object XMLDocument
+                    var categories = doc.getElementsByTagName("Category");
+                    //alter(categories.length);
+                    var sel = document.getElementById("select1");
+                    var frag = document.createDocumentFragment();
+                    sel.addEventListener("change", function () {
+                        //alert(this.value);
+                        var idx=this.selectedIndex;//取出索引值
+                        alert(this.options[idx].value);
+                        alert(this.options[idx].text);
+                    })
+                    for (var i = 0, max = categories.length; i < max; i++) {
+                        //alert(categories);
+                        var CategoryID = categories[i].childNodes[1].firstChild.nodeValue;
+                        var CategoryName = categories[i].childNodes[3].firstChild.nodeValue;
+                        //<option value="0">請選擇</option> dom物件寫法
+                        //var eleOpt = document.createElement("option");
+                        //var txtOpt= document.createTextNode(CategoryName);
+                        //eleOpt.value = CategoryID;
+                        //eleOpt.appendChild(txtOpt);
+
+                        //frag.appendChild(eleOpt);
+
+                        //另一種寫法 把option看成是另一種物件
+                        var opt = new Option(CategoryName,CategoryID);//option是一種option物件
+                        sel.options.add(opt);
+                    }
+                    //sel.appendChild(frag);
+
+                }
+            })
+            xhr.open('get', 'XMLHandler.ashx');
+            xhr.send();
+        }
+        else {
+            alert("xhr=null");
+        }
+    </script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="Scripts/myXMLHttp.js"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>

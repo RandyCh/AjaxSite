@@ -16,24 +16,119 @@
         <div class="container">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <h3>Ajax XML</h3>
+                    <h4>Ajax XML</h4>
                 </div>
                 <div class="panel-body">
-
+                    <input type="button" value="Load" class="btn btn-primary" id="buttonLoad"/>
+                    <!--<div id="content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="images/cat6.jpg" title="廢貓" class="img-circle" />
+                            </div><div class="col-md-3">
+                                <h2></h2>
+                                <p>
+                                </p>
+                            </div>
+                        </div>-->
+                    </div>
+                   
+                
                 </div>
 
             </div>
             <div class="panel-body"></div>
         </div>
 
-
-
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="Scripts/myXMLHttp.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script>
+        document.querySelector("#buttonLoad").addEventListener("click", load);
+        function load()
+        {
+            var xhr = new XMLHttpRequest();
+            if (xhr != null) {
+                xhr.addEventListener("readystatechange", function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status = 200) {
+                            var doc = xhr.responseXML;
+                            //doc是一個XML DOM
+                            //alert(doc);
+                           // var titles = doc.getElementsByTagName("code_name");
+                            var sections = doc.getElementsByTagName("stitle");
+                            //alert(sections.length);
+                            var content = document.getElementById("content");
+                            //先判斷content中是否有子節點 先把content中的資料刪除 不然會重複append上去
+                            //刪除寫法1
+                            //while (content.hasChildNodes()) {
+                            //    content.removeChild(content.lastChild);
+                            //}
+                            //刪除寫法2
+                            content.innerHTML = "";
+
+                            var frag = document.createDocumentFragment();//暫存 dom效能不好
+                            for (var i = 0, max = sections.length; i < max; i++) {
+                               
+                                //console.log(sections[i].childNodes[7].firstChild.nodeValue);
+                                var title=sections[i].getElementsByTagName("code_name")[0].firstChild.nodeValue);
+                                var body=sections[i].getElementsByTagName("qua_ph")[0].firstChild.nodeValue);
+
+                                //var imgFile = section[i].getElementsByTagName("img")[0];
+                                //console.log(imgFile.getAttribute("description"));
+                                //console.log(imgFile.firstChild.nodevalue);
+                                var eleImg = document.createElement("img");//建立img標籤
+                                eleImg.setAttribute("src", img);
+                                eleImg.setAttribute("title", desc);
+                                eleImg.className = "img-thumbnail";
+
+                                var eleDiv2 = document.createElement("div");
+                                eleDiv2.className = "col-md-9";
+                                eleDiv2.appendChild(eleH2);
+                                eleDiv2.appendChild(eleP);
+
+                                var eleRow = document.createElement("div");
+                                eleRow.className = "row";
+                                eleRow.appendChild(eleDiv1);
+                                eleRow.appendChild(eleDiv2);
+
+
+                                //<h2>
+                                var eleH2 = document.createElement("h2");
+                                var txtH2 = document.createTextNode(title);
+                                eleH2.appendChild(txtH2);
+                                //<p>
+                                var eleP = document.createElement("p");
+                                var txtP = document.createTextNode(body);
+                                eleP.appendChild(txtP);
+
+                                var eleDiv1 = document.createElement("div");
+                                eleDiv1.className = "col-md-3";
+                                eleDiv1.appendChild(eleImg);
+                                var eleDiv2 = document.createElement("div");
+                                eleDiv2.className = "col-md-9";
+                                eleDiv2.appendChild(eleH2);
+                                eleDiv2.appendChild(eleP);
+                                var eleRow = document.createElement("div");
+                                eleRow.className = "row";
+                                eleRow.appendChild(eleDiv1);
+                                eleRow.appendChild(eleDiv2);
+
+            //避免影響效能 把此行搬到外面   // var content = document.getElementById("content");
+                                content.appendChild(eleRow);
+            }
+                                     content.appendChild(frag);
+                        }
+                    }
+                });
+                xhr.open("get", "waterQuality.xml");
+                xhr.send();
+            }
+            else {
+                alert("......");
+            }
+        }
+
+    </script>
 
 </body>
 </html>
