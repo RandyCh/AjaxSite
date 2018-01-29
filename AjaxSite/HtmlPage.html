@@ -51,13 +51,15 @@
                 $(".rating-circle").css("background", "")
             }).mouseover(function () {
                 $(this).prevAll().css("background", "yellow");
-            //    $(this).css("background", "yellow");
+                $(this).css("background", "yellow");
             }).click(function () {
-                $(this).prevAll().attr("background", "green");
+                $(this).prevAll().css("background", "green");
                 $(this).css("background", "green");
-                $(".rating-circle").off("mouseover");
+                //$(this).off("mouseover");
+                //$(this).off("hover");
                 })
-        })
+            })
+
        
     </script>
 </body>
